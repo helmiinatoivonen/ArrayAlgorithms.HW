@@ -73,7 +73,9 @@ public class Main {
         -4, 7, 11, -12, 6, 1
         -12, -4, 7, 11, 6, 1
         -12, -4, 6, 7, 11, 1
-        -12, -4, 1, 6, 7, 11 -> 5 passes
+        -12, -4, 1, 6, 7, 11
+        -> 5 passes
+
         1. 2 {-4, 11, 7, -12, 6, 1} (bubble sort)
         pass 1
             -4, 11, 7, -12, 6, 1
@@ -86,25 +88,27 @@ public class Main {
             -4, -12, 7, 6, 1, 11
             -4, -12, 6, 7, 1, 11
             -4, -12, 6, 1, 7, 11
-            -4, -12, 6, 1, 7, 11
+           (-4, -12, 6, 1, 7, 11)
         pass 3
-            -12, -4, 6, 1, 7, 11
-            -12, -4, 6, 1, 7, 11
-            -12, -4, 1, 6, 7, 11
-            -12, -4, 1, 6, 7, 11
-            -12, -4, 1, 6, 7, 11
+            (-12, -4, 6, 1, 7, 11)
+            (-12, -4, 6, 1, 7, 11)
+             -12, -4, 1, 6, 7, 11
+            (-12, -4, 1, 6, 7, 11)
+            (-12, -4, 1, 6, 7, 11)
+            -> 10 passes
 
-        2. selection sort: 5 passes - hypothesis true
+        2. selection sort: 6 passes?
         int [] arr = {-4, 11, 7, -12, 6, 1};
-        for (int i = 0; i < arr.length - 1; i++)
+        for (int i = 0; i < arr.length; i++)
         {
             int indSmallest = i;
             for (int j = i + 1; j < arr.length; j++)
                 if (arr [j] < arr [indSmallest])
                     indSmallest = j;
-            swap (arr, i, indSmallest);
-            if (!!!!something!!!!)
-                System.out.println("after 1 pass the resulting array is: " + arr);
+                swap (arr, i, indSmallest);
+                for (int s : arr)
+                System.out.print (s + " ");
+                System.out.println();
         }
         for (int a : arr)
             System.out.print (a + " ");
@@ -115,7 +119,7 @@ public class Main {
         array [ind1] = array [ind2];
         array [ind2] = tmp;
 
-        bubble sort: */
+        bubble sort: 10 passes
         int [] numbers = {-4, 11, 7, -12, 6, 1};
         final int n = numbers.length;
         boolean changed = true;
@@ -124,10 +128,13 @@ public class Main {
             changed = false;
             for (int i = 0; i <= n - 2; i++)
             {
-                if (numbers [i] > numbers [i] + 1)
+                if (numbers [i] > numbers [i + 1])
                 {
                     swap (numbers, i, i + 1);
                     changed = true;
+                    for (int s : numbers)
+                        System.out.print (s + " ");
+                    System.out.println();
                 }
             }
         }
@@ -139,7 +146,31 @@ public class Main {
         int tmp = array [ind1];
         array [ind1] = array [ind2];
         array [ind2] = tmp;
+
+-----------------------------------------------------------------------------------------------
+        // Exercise 5:
+        1. {9, 7, 2, 11} insertion sort
+        7, 9, 2, 11
+        2, 7, 9, 11
+        2. java code
+        int [] numbers = {9, 7, 2, 11};
+        int n = numbers.length;
+        for (int i = 1; i < n; i++)
+        {
+            int val = numbers [i];
+            int j = i - 1;
+
+            while (j >=0 && numbers [j] > val)
+            {
+                numbers [j + 1] = numbers[j];
+                j--;
+            }
+                numbers [j + 1] = val;
+        }
+        for (int a: numbers)
+            System.out.print (a + " ");
+-----------------------------------------------------------------------------------------------
+*/
     }
-
-
 }
+
